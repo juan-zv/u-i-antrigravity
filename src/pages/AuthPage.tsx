@@ -36,7 +36,8 @@ export default function AuthPage() {
           options: {
             data: {
               full_name: name
-            }
+            },
+            emailRedirectTo: window.location.origin
           }
         });
         authError = error;
