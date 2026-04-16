@@ -18,15 +18,9 @@ export default function LandingPage() {
         <div className="hidden md:flex items-center gap-8">
           <Link
             className="text-blue-900 font-bold font-headline text-sm tracking-tight hover:opacity-80 transition-opacity"
-            to="/feed"
+            to="/auth"
           >
             Rides
-          </Link>
-          <Link
-            className="text-slate-500 font-headline text-sm tracking-tight hover:opacity-80 transition-opacity"
-            to="/profile"
-          >
-            History
           </Link>
           <a
             className="text-slate-500 font-headline text-sm tracking-tight hover:opacity-80 transition-opacity"
@@ -35,8 +29,8 @@ export default function LandingPage() {
             Safety
           </a>
           <div className="h-8 w-[1px] bg-outline-variant/30"></div>
-          <Link to="/feed" className="px-6 py-2 flex items-center justify-center rounded-full bg-primary text-on-primary font-headline text-sm font-bold active:scale-95 transition-all shadow-sm">
-            Sign In
+          <Link to="/auth" className="px-6 py-2 flex items-center justify-center rounded-full bg-primary text-on-primary font-headline text-sm font-bold active:scale-95 transition-all shadow-sm">
+            Sign In / Sign Up
           </Link>
         </div>
         <button className="md:hidden material-symbols-outlined text-blue-900">
@@ -78,11 +72,11 @@ export default function LandingPage() {
               together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/feed" className="px-10 py-5 rounded-full bg-primary text-on-primary font-headline text-lg font-bold shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all text-center flex items-center justify-center">
-                Get Started
+              <Link to="/auth" className="px-10 py-5 rounded-full bg-primary text-on-primary font-headline text-lg font-bold shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all text-center flex items-center justify-center">
+                Log In
               </Link>
-              <Link to="/feed" className="px-10 py-5 rounded-full bg-surface-container-highest text-primary font-headline text-lg font-bold hover:bg-surface-container-high transition-all text-center flex items-center justify-center">
-                View Routes
+              <Link to="/auth" className="px-10 py-5 rounded-full bg-surface-container-highest text-primary font-headline text-lg font-bold hover:bg-surface-container-high transition-all text-center flex items-center justify-center">
+                Sign Up
               </Link>
             </div>
           </div>

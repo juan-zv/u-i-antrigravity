@@ -54,7 +54,36 @@ export default {
         "inverse-primary": "#a7c8ff",
         "on-error-container": "#93000a",
         "on-primary-fixed": "#001b3c",
-        "background": "#faf9fc"
+        "background": "var(--background)",
+        "foreground": "var(--foreground)",
+        border: "var(--border)",
+        input: "var(--input)",
+        ring: "var(--ring)",
+        "chart-1": "var(--chart-1)",
+        "chart-2": "var(--chart-2)",
+        "chart-3": "var(--chart-3)",
+        "chart-4": "var(--chart-4)",
+        "chart-5": "var(--chart-5)",
+        muted: {
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
+        },
+        popover: {
+          DEFAULT: "var(--popover)",
+          foreground: "var(--popover-foreground)",
+        },
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
+        accent: {
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-foreground)",
+        },
+        destructive: {
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-foreground)",
+        }
       },
       borderRadius: {
         "DEFAULT": "1rem",

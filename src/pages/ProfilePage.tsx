@@ -1,4 +1,46 @@
+import { useTheme } from '../components/theme-provider';
+import TripHistoryCard from '../components/TripHistoryCard';
+import type { Trip } from '../components/TripHistoryCard';
+
+const MOCK_TRIPS: Trip[] = [
+  {
+    id: "t1",
+    date: "Oct 24",
+    time: "08:45 AM",
+    departureLocation: "North Gate Parking",
+    arrivalLocation: "Wilkinson Student Union",
+    driverName: "Marcus Chen",
+    driverAvatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDieD7zGP5SuYly-ZM1JTFhhj2O4xXYab8WT5BjjVPhxpmZgrAyMfzb_ks5TCPSj9B2aOVlxOSgcxDIl5Bvk5IgyfvoakIkrPi9EKgAhq9bYeqmwMIUEq1MuGzb0ikFYxA4TA6Gn8G-QmitNb_AAYtGZkyDmQs3szcWaPbl72e5uoVnggDNDo9b2S6fOcToEfksgPx1Fk8pejF7RWIlAQYunOIvlhu_xi-TQWuJioo9eROgiAtoizuS2pG1OUWZiE4bTIDy2J_tfX-s",
+    rating: "4.9",
+    price: "4.50"
+  },
+  {
+    id: "t2",
+    date: "Oct 22",
+    time: "02:15 PM",
+    departureLocation: "Marriott Center",
+    arrivalLocation: "Library Quad",
+    driverName: "Sarah Jenkins",
+    driverAvatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDuZPrA_mPRZPME_1u6Tj0dAq9zSq6ZbaosweNyFFGpc56x-MKFqeqtw7UCNxO8Ki32LSm4cl8HcHdwA13Kf0Uc9fvc7Vi182DgbwzJzIvapJAFBAjQ8PJJrEODaUG6W_mL99ZQgoS5JZ7UNTUWQsZFhyh8X77G2Pk0PMLRdxEgoipE2tZIa1ucN11bQYFchGWNyhmf6ukDc2T93sHsCzVQcCWvBayZHule1U3ieN9E9qfpdxyTVPJqwFXQA8SmydUcnz237-BqcvGF",
+    rating: "5.0",
+    price: "3.75"
+  },
+  {
+    id: "t3",
+    date: "Oct 20",
+    time: "06:50 PM",
+    departureLocation: "Heritage Halls",
+    arrivalLocation: "Law School",
+    driverName: "David Miller",
+    driverAvatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuAx_YRW3QfFdmWp6p5EK_MjMkj-7XebK_AeH_vG-wAdIbRkEcenXNObCZahfT-x3xhL7tECfmD3S3NDj2h0LZcjOSrXfbmV3tTA4iN_eu3StdEuEZShHK798ZCYyZVvQ33LZwicl4cY7jPFAEgnGx7rK0Fnvwp_n2lQmqJsOB-e1wUsDimle9-gQNeWqF9Frtknn1SZam90lNDg1qoIM6UGB9M5K4KoNpKhQ-hNQOgNm3Clw3i39HOGDFt52J9K3DnqROLXeNH8rge2",
+    rating: "4.8",
+    price: "5.20"
+  }
+];
+
 export default function ProfilePage() {
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="flex flex-col min-h-screen">
 
@@ -68,8 +110,54 @@ export default function ProfilePage() {
           </div>
         </section>
 
-        {/* Trip History Section */}
+        {/* Preferences Section */}
         <section className="mt-16">
+          <div className="mb-6">
+            <h3 className="font-headline text-3xl font-bold text-primary tracking-tight">
+              Preferences
+            </h3>
+            <p className="font-body text-on-surface-variant mt-1">
+              Customize your app experience.
+            </p>
+          </div>
+          
+          <div className="bg-surface-container-low p-6 rounded-lg flex items-center justify-between group hover:bg-surface-container transition-all">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+                <span className="material-symbols-outlined">
+                  {theme === 'dark' ? 'dark_mode' : theme === 'light' ? 'light_mode' : 'brightness_auto'}
+                </span>
+              </div>
+              <div>
+                <span className="block font-bold text-on-surface">App Theme</span>
+                <span className="block text-sm text-on-surface-variant">Switch between light, dark, or system mode.</span>
+              </div>
+            </div>
+            <div className="flex bg-surface-container-high rounded-full p-1 border border-outline-variant/20">
+              <button 
+                onClick={() => setTheme('light')}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${theme === 'light' ? 'bg-surface-container-lowest text-primary shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`}
+              >
+                Light
+              </button>
+              <button 
+                onClick={() => setTheme('dark')}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${theme === 'dark' ? 'bg-surface-container-lowest text-primary shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`}
+              >
+                Dark
+              </button>
+              <button 
+                onClick={() => setTheme('system')}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${theme === 'system' ? 'bg-surface-container-lowest text-primary shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`}
+              >
+                System
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Trip History Section */}
+        <section className="mt-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
             <div>
               <h3 className="font-headline text-3xl font-bold text-primary tracking-tight">
@@ -92,177 +180,28 @@ export default function ProfilePage() {
 
           {/* Trip List: No-Line Tonal Layering */}
           <div className="space-y-4">
-            {/* Trip Card 1 */}
-            <div className="bg-surface-container-low hover:bg-surface-container transition-all p-6 rounded-lg flex flex-col md:flex-row items-center gap-6 group">
-              <div className="flex-none w-full md:w-32 text-center md:text-left">
-                <span className="block font-label text-[0.6875rem] text-secondary font-bold tracking-widest uppercase">
-                  Oct 24
-                </span>
-                <span className="block font-headline text-lg font-bold text-on-surface">
-                  08:45 AM
-                </span>
-              </div>
-              <div className="flex-grow w-full">
-                <div className="flex items-center gap-3">
-                  <span className="w-2.5 h-2.5 rounded-full border-2 border-secondary"></span>
-                  <span className="font-body font-semibold text-on-surface">
-                    North Gate Parking
-                  </span>
-                </div>
-                <div className="h-6 ml-[4.5px] border-l-2 border-dashed border-outline-variant my-1"></div>
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-secondary text-sm">
-                    location_on
-                  </span>
-                  <span className="font-body font-semibold text-on-surface">
-                    Wilkinson Student Union
-                  </span>
-                </div>
-              </div>
-              <div className="flex-none flex items-center gap-4 w-full md:w-auto pt-4 md:pt-0 border-t border-outline-variant/10 md:border-0">
-                <div className="flex items-center gap-3 pr-4 border-r border-outline-variant/30">
-                  <img
-                    className="w-10 h-10 rounded-full object-cover"
-                    alt="headshot of a friendly man in a navy polo shirt, student driver profile"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDieD7zGP5SuYly-ZM1JTFhhj2O4xXYab8WT5BjjVPhxpmZgrAyMfzb_ks5TCPSj9B2aOVlxOSgcxDIl5Bvk5IgyfvoakIkrPi9EKgAhq9bYeqmwMIUEq1MuGzb0ikFYxA4TA6Gn8G-QmitNb_AAYtGZkyDmQs3szcWaPbl72e5uoVnggDNDo9b2S6fOcToEfksgPx1Fk8pejF7RWIlAQYunOIvlhu_xi-TQWuJioo9eROgiAtoizuS2pG1OUWZiE4bTIDy2J_tfX-s"
-                  />
-                  <div>
-                    <span className="text-xs text-on-surface-variant block">Driver</span>
-                    <span className="text-sm font-bold">Marcus Chen</span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="flex items-center justify-end text-tertiary-container gap-0.5 mb-1">
-                    <span
-                      className="material-symbols-outlined text-sm"
-                      style={{ fontVariationSettings: "'FILL' 1" }}
-                    >
-                      star
-                    </span>
-                    <span className="text-sm font-bold">4.9</span>
-                  </div>
-                  <span className="font-headline text-lg font-extrabold text-primary">
-                    $4.50
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Trip Card 2 */}
-            <div className="bg-surface-container-low hover:bg-surface-container transition-all p-6 rounded-lg flex flex-col md:flex-row items-center gap-6 group">
-              <div className="flex-none w-full md:w-32 text-center md:text-left">
-                <span className="block font-label text-[0.6875rem] text-secondary font-bold tracking-widest uppercase">
-                  Oct 22
-                </span>
-                <span className="block font-headline text-lg font-bold text-on-surface">
-                  02:15 PM
-                </span>
-              </div>
-              <div className="flex-grow w-full">
-                <div className="flex items-center gap-3">
-                  <span className="w-2.5 h-2.5 rounded-full border-2 border-secondary"></span>
-                  <span className="font-body font-semibold text-on-surface">
-                    Marriott Center
-                  </span>
-                </div>
-                <div className="h-6 ml-[4.5px] border-l-2 border-dashed border-outline-variant my-1"></div>
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-secondary text-sm">
-                    location_on
-                  </span>
-                  <span className="font-body font-semibold text-on-surface">
-                    Library Quad
-                  </span>
-                </div>
-              </div>
-              <div className="flex-none flex items-center gap-4 w-full md:w-auto pt-4 md:pt-0 border-t border-outline-variant/10 md:border-0">
-                <div className="flex items-center gap-3 pr-4 border-r border-outline-variant/30">
-                  <img
-                    className="w-10 h-10 rounded-full object-cover"
-                    alt="portrait of a young woman with a warm smile, college student professional photo"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuZPrA_mPRZPME_1u6Tj0dAq9zSq6ZbaosweNyFFGpc56x-MKFqeqtw7UCNxO8Ki32LSm4cl8HcHdwA13Kf0Uc9fvc7Vi182DgbwzJzIvapJAFBAjQ8PJJrEODaUG6W_mL99ZQgoS5JZ7UNTUWQsZFhyh8X77G2Pk0PMLRdxEgoipE2tZIa1ucN11bQYFchGWNyhmf6ukDc2T93sHsCzVQcCWvBayZHule1U3ieN9E9qfpdxyTVPJqwFXQA8SmydUcnz237-BqcvGF"
-                  />
-                  <div>
-                    <span className="text-xs text-on-surface-variant block">Driver</span>
-                    <span className="text-sm font-bold">Sarah Jenkins</span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="flex items-center justify-end text-tertiary-container gap-0.5 mb-1">
-                    <span
-                      className="material-symbols-outlined text-sm"
-                      style={{ fontVariationSettings: "'FILL' 1" }}
-                    >
-                      star
-                    </span>
-                    <span className="text-sm font-bold">5.0</span>
-                  </div>
-                  <span className="font-headline text-lg font-extrabold text-primary">
-                    $3.75
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Trip Card 3 */}
-            <div className="bg-surface-container-low hover:bg-surface-container transition-all p-6 rounded-lg flex flex-col md:flex-row items-center gap-6 group">
-              <div className="flex-none w-full md:w-32 text-center md:text-left">
-                <span className="block font-label text-[0.6875rem] text-secondary font-bold tracking-widest uppercase">
-                  Oct 20
-                </span>
-                <span className="block font-headline text-lg font-bold text-on-surface">
-                  06:50 PM
-                </span>
-              </div>
-              <div className="flex-grow w-full">
-                <div className="flex items-center gap-3">
-                  <span className="w-2.5 h-2.5 rounded-full border-2 border-secondary"></span>
-                  <span className="font-body font-semibold text-on-surface">
-                    Heritage Halls
-                  </span>
-                </div>
-                <div className="h-6 ml-[4.5px] border-l-2 border-dashed border-outline-variant my-1"></div>
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-secondary text-sm">
-                    location_on
-                  </span>
-                  <span className="font-body font-semibold text-on-surface">
-                    Law School
-                  </span>
-                </div>
-              </div>
-              <div className="flex-none flex items-center gap-4 w-full md:w-auto pt-4 md:pt-0 border-t border-outline-variant/10 md:border-0">
-                <div className="flex items-center gap-3 pr-4 border-r border-outline-variant/30">
-                  <img
-                    className="w-10 h-10 rounded-full object-cover"
-                    alt="clean-cut college student male portrait with a friendly expression"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx_YRW3QfFdmWp6p5EK_MjMkj-7XebK_AeH_vG-wAdIbRkEcenXNObCZahfT-x3xhL7tECfmD3S3NDj2h0LZcjOSrXfbmV3tTA4iN_eu3StdEuEZShHK798ZCYyZVvQ33LZwicl4cY7jPFAEgnGx7rK0Fnvwp_n2lQmqJsOB-e1wUsDimle9-gQNeWqF9Frtknn1SZam90lNDg1qoIM6UGB9M5K4KoNpKhQ-hNQOgNm3Clw3i39HOGDFt52J9K3DnqROLXeNH8rge2"
-                  />
-                  <div>
-                    <span className="text-xs text-on-surface-variant block">Driver</span>
-                    <span className="text-sm font-bold">David Miller</span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="flex items-center justify-end text-tertiary-container gap-0.5 mb-1">
-                    <span
-                      className="material-symbols-outlined text-sm"
-                      style={{ fontVariationSettings: "'FILL' 1" }}
-                    >
-                      star
-                    </span>
-                    <span className="text-sm font-bold">4.8</span>
-                  </div>
-                  <span className="font-headline text-lg font-extrabold text-primary">
-                    $5.20
-                  </span>
-                </div>
-              </div>
-            </div>
+            {MOCK_TRIPS.map(trip => (
+              <TripHistoryCard key={trip.id} trip={trip} />
+            ))}
           </div>
 
           <button className="mt-8 w-full py-4 rounded-lg bg-surface-container text-primary font-bold hover:bg-surface-container-high transition-colors">
             View More History
+          </button>
+        </section>
+
+        {/* Logout Section */}
+        <section className="mt-12 flex justify-center">
+          <button 
+            onClick={async () => {
+              const { supabase } = await import('../supabase');
+              await supabase.auth.signOut();
+              window.location.href = '/auth'; 
+            }}
+            className="flex items-center gap-2 px-6 py-3 text-error bg-error-container/20 rounded-full hover:bg-error-container/40 transition-colors font-bold"
+          >
+            <span className="material-symbols-outlined">logout</span>
+            Sign Out
           </button>
         </section>
       </main>
