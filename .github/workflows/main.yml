@@ -43,7 +43,9 @@ jobs:
         run: pnpm install
 
       - name: Build project
-        run: pnpm run build
+        run: |
+          pnpm run build
+          cp dist/index.html dist/404.html
         env:
           # If your env vars for supabase are required at build time, 
           # you will need to add them via GitHub Secrets here:
